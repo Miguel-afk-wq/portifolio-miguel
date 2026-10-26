@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miguel Oliveira Martins | Engenheiro de Software & UI/UX Designer</title>
+  <meta name="description" content="Portfólio autoral de Miguel Oliveira Martins. Desenvolvimento Web, Mobile e Design de Interfaces com estética refinada e alta performance.">
+  
+  <!-- Google Fonts: Syne & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              primary: '#7C3AED',
+              secondary: '#10B981',
+              darkBg: '#0F1117',
+              darkSurface: '#161922',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-body selection:bg-purple-600 selection:text-white relative">
+
+  <!-- Ambient Background Glow Accents -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- ==========================================================================
+       ETAPA 2: Cabeçalho Fixo, Navegação e Dark/Light Mode
+       ========================================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo com Iniciais em Syne -->
+      <a href="#" class="group flex items-center gap-2.5 text-decoration-none">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-600 to-emerald-500 p-[1.5px] transition-transform duration-300 group-hover:scale-105 shadow-lg shadow-violet-500/20">
+          <div class="w-full h-full bg-[#0F1117] rounded-[10px] flex items-center justify-center">
+            <span class="font-display font-bold text-lg text-white">MO</span>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-bold text-lg tracking-tight group-hover:text-violet-400 transition-colors">
+            Miguel Martins
+          </span>
+          <span class="text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-medium -mt-1">
+            Software & UI/UX
+          </span>
+        </div>
+      </a>
+
+      <!-- Menu de Navegação Desktop -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="#sobre" class="text-[var(--text-secondary)] hover:text-white transition-colors">Sobre</a>
+        <a href="#projetos" class="text-[var(--text-secondary)] hover:text-white transition-colors">Projetos</a>
+        <a href="#contato" class="text-[var(--text-secondary)] hover:text-white transition-colors">Contato</a>
+
+        <!-- Botão Alternador de Tema (Desktop) -->
+        <button id="theme-toggle" aria-label="Alternar tema claro e escuro" class="p-2.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:border-violet-500/50 hover:bg-violet-500/10 transition-all cursor-pointer">
+          <!-- Ícone Lua (Modo Escuro Ativo) -->
+          <svg class="moon-icon w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+          <!-- Ícone Sol (Modo Claro Ativo) -->
+          <svg class="sun-icon hidden w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+        </button>
+
+        <!-- CTA Rápido Navbar -->
+        <a href="#contato" class="hidden lg:inline-flex text-xs font-semibold uppercase tracking-wider py-2.5 px-4 rounded-lg bg-violet-600/10 hover:bg-violet-600/20 text-violet-400 border border-violet-500/30 transition-all hover:scale-102">
+          Vamos Conversar
+        </a>
+      </nav>
+
+      <!-- Botões Mobile: Alternador + Hambúrguer -->
+      <div class="flex items-center gap-3 md:hidden">
+        <button id="theme-toggle-mobile" aria-label="Alternar tema mobile" class="p-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)]">
+          <svg class="moon-icon w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+          <svg class="sun-icon hidden w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+        </button>
+
+        <button id="mobile-menu-button" aria-expanded="false" aria-label="Menu de Navegação" class="p-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:border-violet-500/40">
+          <!-- Ícone Hambúrguer -->
+          <svg id="icon-menu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+          </svg>
+          <!-- Ícone Fechar (X) -->
+          <svg id="icon-close" class="hidden w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Gaveta de Menu Mobile com Transição Suave -->
+    <div id="mobile-menu" class="md:hidden glass-nav border-t border-[var(--border-subtle)] opacity-0 pointer-events-none -translate-y-3 transition-all duration-300 px-6 py-6 space-y-4">
+      <a href="#sobre" class="mobile-nav-link block text-base font-medium text-[var(--text-secondary)] hover:text-white py-1">Sobre Mim</a>
+      <a href="#projetos" class="mobile-nav-link block text-base font-medium text-[var(--text-secondary)] hover:text-white py-1">Projetos Selecionados</a>
+      <a href="#contato" class="mobile-nav-link block text-base font-medium text-[var(--text-secondary)] hover:text-white py-1">Contato</a>
+      <div class="pt-2">
+        <a href="#contato" class="mobile-nav-link btn-primary w-full text-center text-sm py-3">
+          Iniciar um Projeto
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-[1200px] mx-auto px-4 sm:px-8 pt-32 pb-24">
+
+    <!-- ==========================================================================
+         ETAPA 3: Hero Section
+         ========================================================================== -->
+    <section class="min-h-[75vh] flex flex-col justify-center py-12 lg:py-20 reveal-on-scroll">
+      
+      <!-- Badge de Boas-vindas -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/25 text-violet-400 text-xs font-semibold w-max mb-6">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span>Portfolio Autoral • Miguel Oliveira Martins</span>
+      </div>
+
+      <!-- Título Principal com Syne e Gradiente de Cores (#7C3AED -> #10B981) -->
+      <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-tight mb-6 max-w-4xl">
+        Transformando ideias complexas em <span class="text-gradient">experiências digitais</span> memoráveis.
+      </h1>
+
+      <!-- Subtítulo Explicativo -->
+      <p class="text-lg sm:text-xl text-[var(--text-secondary)] max-w-2xl mb-10 leading-relaxed font-normal">
+        Sou Engenheiro de Software Full-Stack e UI/UX Designer. Desenvolvo aplicações web e mobile de alta escala combinando arquitetura técnica sólida, estética editorial refinada e microinterações fluidas.
+      </p>
+
+      <!-- Botões de Ação CTA -->
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="#projetos" class="btn-primary text-base">
+          <span>Ver Projetos</span>
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </a>
+        <a href="#contato" class="btn-secondary text-base">
+          <span>Entrar em Contato</span>
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Indicadores Rápidos -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-16 mt-8 border-t border-[var(--border-subtle)] max-w-3xl">
+        <div>
+          <span class="block font-display font-bold text-3xl sm:text-4xl text-white">5+</span>
+          <span class="text-xs sm:text-sm text-[var(--text-muted)] font-medium">Anos de Experiência</span>
+        </div>
+        <div>
+          <span class="block font-display font-bold text-3xl sm:text-4xl text-gradient">30+</span>
+          <span class="text-xs sm:text-sm text-[var(--text-muted)] font-medium">Projetos Entregues</span>
+        </div>
+        <div>
+          <span class="block font-display font-bold text-3xl sm:text-4xl text-white">99.9%</span>
+          <span class="text-xs sm:text-sm text-[var(--text-muted)] font-medium">Compromisso com Qualidade</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ETAPA 3: Seção "Sobre Mim" Integrada
+         ========================================================================== -->
+    <section id="sobre" class="py-20 border-t border-[var(--border-subtle)] reveal-on-scroll">
+      
+      <div class="mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-violet-400">Biografia & Skills</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl mt-2 tracking-tight">Sobre Mim</h2>
+      </div>
+
+      <!-- Grid de 2 Colunas Desktop / 1 Coluna Mobile -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Coluna 1: Imagem / Card de Perfil com Glow e Tag de Status -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-md">
+            
+            <!-- Glow Aura atrás do card -->
+            <div class="absolute -inset-1.5 bg-gradient-to-r from-violet-600 to-emerald-500 rounded-2xl blur-lg opacity-30 transition duration-1000 group-hover:opacity-60"></div>
+            
+            <div class="relative glass-card p-4 sm:p-6 overflow-hidden">
+              <!-- Arte Conceitual / Foto de Perfil Ilustrada e Estilizada -->
+              <div class="relative w-full aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-[#1E2230] via-[#12141C] to-[#0A0C10] flex items-center justify-center border border-white/5">
+                
+                <!-- Grade Geométrica Futurista -->
+                <svg class="absolute inset-0 w-full h-full opacity-15" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+                  <path d="M0 20 H100 M0 40 H100 M0 60 H100 M0 80 H100 M20 0 V100 M40 0 V100 M60 0 V100 M80 0 V100" stroke-width="0.3" stroke="#7C3AED"/>
+                  <circle cx="50" cy="50" r="30" stroke="#10B981" stroke-width="0.5" stroke-dasharray="2 2"/>
+                </svg>
+
+                <!-- Avatar Ilustrado de Miguel Oliveira Martins -->
+                <div class="relative z-10 flex flex-col items-center">
+                  <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-full p-1 bg-gradient-to-tr from-violet-500 via-fuchsia-500 to-emerald-400 shadow-2xl shadow-violet-500/30 flex items-center justify-center">
+                    <div class="w-full h-full rounded-full bg-[#161922] flex items-center justify-center overflow-hidden relative">
+                      <!-- SVG de Silhueta / Retrato com óculos e estética tech -->
+                      <svg class="w-28 h-28 text-violet-300" viewBox="0 0 120 120" fill="none">
+                        <circle cx="60" cy="45" r="22" fill="#2A2E3D"/>
+                        <path d="M48 45h8M64 45h8" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M30 105c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="#252938"/>
+                        <path d="M42 75l18 12 18-12" stroke="#7C3AED" stroke-width="2"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <span class="mt-4 font-display font-bold text-lg text-white tracking-wide">Miguel O. Martins</span>
+                  <span class="text-xs text-violet-400 font-mono">Curitiba / São Paulo • Brasil</span>
+                </div>
+
+                <!-- Tag de Status Ativa no canto da imagem -->
+                <div class="absolute top-4 right-4 z-20">
+                  <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0F1117]/85 backdrop-blur-md border border-emerald-500/30 shadow-lg">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 status-dot-pulse"></span>
+                    <span class="text-[11px] font-semibold text-emerald-300 tracking-tight">Disponível para projetos</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Rodapé informativo do card -->
+              <div class="mt-5 flex items-center justify-between text-xs text-[var(--text-muted)] border-t border-[var(--border-subtle)] pt-4">
+                <span>Foco: Web3, Cloud, Design System</span>
+                <span class="font-mono text-emerald-400">Open to Remote</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Coluna 2: Biografia em 3 Parágrafos e Grade de Tags -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="space-y-4 text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed">
+            <p>
+              Olá! Sou <strong class="text-white font-semibold">Miguel Oliveira Martins</strong>, desenvolvedor full-stack e designer de interfaces guiado pela obsessão por arquitetura limpa e estética refinada. Acredito que o melhor software é aquele que equilibra precisão técnica com uma experiência visual instigante e intuitiva.
+            </p>
+            <p>
+              Com sólida vivência na construção de ecossistemas web modernos, trabalho desde o protótipo no Figma até a implementação resiliente no front-end e a modelagem escalável de microsserviços no back-end. Minha metodologia se inspira em interfaces contemporâneas de referência como <em>Linear</em> e <em>Pangram Pangram</em>, onde cada espaçamento e tipografia tem um propósito claro.
+            </p>
+            <p>
+              Atualmente, me dedico à criação de produtos digitais robustos utilizando o ecossistema TypeScript, React, Next.js, Node.js e Python, sempre com foco em acessibilidade, métricas de performance (Core Web Vitals) e valor real para o negócio.
+            </p>
+          </div>
+
+          <!-- Grade de Tags com Principais Habilidades / Tecnologias -->
+          <div class="pt-4">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] mb-3">
+              Stack Tecnológica & Habilidades
+            </h3>
+            <div class="flex flex-wrap gap-2.5">
+              <span class="tech-pill">⚡ React / Next.js</span>
+              <span class="tech-pill">🔷 TypeScript</span>
+              <span class="tech-pill">🎨 Tailwind CSS</span>
+              <span class="tech-pill">✨ UI/UX Design (Figma)</span>
+              <span class="tech-pill">🟢 Node.js / Express</span>
+              <span class="tech-pill">🐍 Python / FastAPI</span>
+              <span class="tech-pill">🐘 PostgreSQL / Prisma</span>
+              <span class="tech-pill">☁️ Docker & CI/CD</span>
+              <span class="tech-pill">🔮 GraphQL & REST</span>
+              <span class="tech-pill">🧩 Micro-Frontends</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         ETAPA 4: Galeria de Projetos Interativa
+         ========================================================================== -->
+    <section id="projetos" class="py-20 border-t border-[var(--border-subtle)] reveal-on-scroll">
+      
+      <!-- Cabeçalho da Seção com Título e Filtros -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-violet-400">Cases Selecionados</span>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl mt-2 tracking-tight">Projetos em Destaque</h2>
+          <p class="text-sm sm:text-base text-[var(--text-secondary)] mt-2 max-w-xl">
+            Soluções completas desenhadas e codificadas com foco em usabilidade, performance e rigor visual.
+          </p>
+        </div>
+
+        <!-- Filtro Simples no Topo da Galeria: Todos, Web, Mobile, UI/UX -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button class="filter-btn active" data-filter="all">Todos</button>
+          <button class="filter-btn" data-filter="web">Web</button>
+          <button class="filter-btn" data-filter="mobile">Mobile</button>
+          <button class="filter-btn" data-filter="uiux">UI/UX</button>
+        </div>
+      </div>
+
+      <!-- Grid Responsivo de Projetos: 1 col mobile, 2 col tablet, 3 col desktop -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        
+        <!-- CARD 1: Web -->
+        <article class="project-card glass-card overflow-hidden group flex flex-col transition-all duration-300" data-category="web">
+          <!-- Capa 16:9 com scale-105 no hover -->
+          <div class="relative aspect-video w-full overflow-hidden bg-[#1E2230] border-b border-[var(--border-subtle)]">
+            <!-- Mockup Gráfico SVG Ilustrativo do Projeto Web -->
+            <svg class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" viewBox="0 0 400 225" fill="none">
+              <rect width="400" height="225" fill="#12151E"/>
+              <rect x="25" y="20" width="350" height="185" rx="8" fill="#181B26" stroke="#2B3042" stroke-width="1.5"/>
+              <!-- Janela de Navegador -->
+              <circle cx="45" cy="36" r="4" fill="#EF4444"/>
+              <circle cx="58" cy="36" r="4" fill="#F59E0B"/>
+              <circle cx="71" cy="36" r="4" fill="#10B981"/>
+              <rect x="95" y="30" width="160" height="12" rx="4" fill="#252A3D"/>
+              <!-- Conteúdo da Interface -->
+              <rect x="45" y="60" width="90" height="55" rx="6" fill="#7C3AED" fill-opacity="0.2" stroke="#7C3AED" stroke-width="1"/>
+              <rect x="150" y="60" width="205" height="55" rx="6" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="1"/>
+              <!-- Gráfico de Linhas -->
+              <path d="M50 165 C 100 130, 150 180, 200 135 C 250 90, 300 140, 350 110" stroke="#7C3AED" stroke-width="3" stroke-linecap="round"/>
+              <path d="M50 175 C 100 150, 150 165, 200 150 C 250 135, 300 160, 350 140" stroke="#10B981" stroke-width="2" stroke-dasharray="4 4"/>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#161922] via-transparent to-transparent opacity-60"></div>
+            <span class="absolute top-3 right-3 text-[11px] font-mono px-2.5 py-1 rounded-md bg-[#0F1117]/80 backdrop-blur border border-white/10 text-violet-300">
+              Web App
+            </span>
+          </div>
+
+          <!-- Corpo do Card -->
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <!-- Pílulas de Tecnologias -->
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="tech-pill text-[10px] py-1 px-2.5">Next.js 14</span>
+                <span class="tech-pill text-[10px] py-1 px-2.5">Tailwind</span>
+                <span class="tech-pill text-[10px] py-1 px-2.5">TypeScript</span>
+              </div>
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-violet-400 transition-colors">
+                Pulse Analytics Cloud
+              </h3>
+              <p class="text-sm text-[var(--text-secondary)] mt-2 line-clamp-2 leading-relaxed">
+                Plataforma de métricas e observabilidade em tempo real para times de engenharia, com dashboards modulares e exportação automatizada.
+              </p>
+            </div>
+
+            <!-- Links de Ação no Rodapé -->
+            <div class="flex items-center gap-4 pt-6 mt-6 border-t border-[var(--border-subtle)]">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-white hover:text-violet-400 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+                Demo ao Vivo
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-muted)] hover:text-white transition-colors">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 2: Mobile -->
+        <article class="project-card glass-card overflow-hidden group flex flex-col transition-all duration-300" data-category="mobile">
+          <div class="relative aspect-video w-full overflow-hidden bg-[#1E2230] border-b border-[var(--border-subtle)]">
+            <svg class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" viewBox="0 0 400 225" fill="none">
+              <rect width="400" height="225" fill="#10131A"/>
+              <!-- Smartphone Mockup Central -->
+              <rect x="145" y="15" width="110" height="195" rx="16" fill="#181B26" stroke="#7C3AED" stroke-width="2"/>
+              <!-- Dynamic Island / Notch -->
+              <rect x="180" y="24" width="40" height="8" rx="4" fill="#0A0C10"/>
+              <!-- Cartão de Carteira Digital -->
+              <rect x="157" y="45" width="86" height="50" rx="8" fill="url(#cardGrad)" />
+              <circle cx="175" cy="65" r="7" fill="#FFFFFF" fill-opacity="0.3"/>
+              <!-- Lista de Transações Mobile -->
+              <rect x="157" y="105" width="86" height="18" rx="4" fill="#252A3D"/>
+              <rect x="157" y="129" width="86" height="18" rx="4" fill="#252A3D"/>
+              <rect x="157" y="153" width="86" height="18" rx="4" fill="#252A3D"/>
+              <defs>
+                <linearGradient id="cardGrad" x1="157" y1="45" x2="243" y2="95" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#7C3AED"/>
+                  <stop offset="1" stop-color="#10B981"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#161922] via-transparent to-transparent opacity-60"></div>
+            <span class="absolute top-3 right-3 text-[11px] font-mono px-2.5 py-1 rounded-md bg-[#0F1117]/80 backdrop-blur border border-white/10 text-emerald-300">
+              Mobile App
+            </span>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="tech-pill text-[10px] py-1 px-2.5">React Native</span>
+                <span class="tech-pill text-[10px] py-1 px-2.5">Expo</span>
+                <span class="tech-pill text-[10px] py-1 px-2.5">Supabase</span>
+              </div>
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-emerald-400 transition-colors">
+                Finflow • Gestão Financeira
+              </h3>
+              <p class="text-sm text-[var(--text-secondary)] mt-2 line-clamp-2 leading-relaxed">
+                Aplicativo financeiro mobile com categorização preditiva de despesas via machine learning local e sincronização offline-first.
+              </p>
+            </div>
+
+            <div class="flex items-center gap-4 pt-6 mt-6 border-t border-[var(--border-subtle)]">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-white hover:text-emerald-400 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+                Demo ao Vivo
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-muted)] hover:text-white transition-colors">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 3: UI/UX -->
+        <article class="project-card glass-card overflow-hidden group flex flex-col transition-all duration-300" data-category="uiux">
+          <div class="relative aspect-video w-full overflow-hidden bg-[#1E2230] border-b border-[var(--border-subtle)]">
+            <svg class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" viewBox="0 0 400 225" fill="none">
+              <rect width="400" height="225" fill="#13151F"/>
+              <!-- Elementos de Design System & Tokens -->
+              <rect x="30" y="30" width="85" height="75" rx="8" fill="#7C3AED" stroke="#A78BFA" stroke-width="1.5"/>
+              <text x="42" y="72" fill="#FFFFFF" font-family="Syne" font-size="12" font-weight="bold">#7C3AED</text>
+              <rect x="130" y="30" width="85" height="75" rx="8" fill="#10B981" stroke="#6EE7B7" stroke-width="1.5"/>
+              <text x="142" y="72" fill="#FFFFFF" font-family="Syne" font-size="12" font-weight="bold">#10B981</text>
+              <rect x="230" y="30" width="140" height="75" rx="8" fill="#1E2333" stroke="#374151" stroke-width="1"/>
+              <!-- Typography preview -->
+              <text x="245" y="60" fill="#FFFFFF" font-family="Syne" font-size="14" font-weight="bold">Syne Bold</text>
+              <text x="245" y="80" fill="#9CA3AF" font-family="Plus Jakarta Sans" font-size="10">Plus Jakarta Sans 400</text>
+              <!-- Componentes de UI -->
+              <rect x="30" y="125" width="150" height="35" rx="10" fill="#7C3AED" fill-opacity="0.2" stroke="#7C3AED" stroke-width="1"/>
+              <rect x="200" y="125" width="170" height="35" rx="10" fill="#1E2333" stroke="#4B5563" stroke-width="1"/>
+              <circle cx="215" cy="142" r="5" fill="#10B981"/>
+              <rect x="228" y="139" width="80" height="7" rx="3.5" fill="#6B7280"/>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#161922] via-transparent to-transparent opacity-60"></div>
+            <span class="absolute top-3 right-3 text-[11px] font-mono px-2.5 py-1 rounded-md bg-[#0F1117]/80 backdrop-blur border border-white/10 text-fuchsia-300">
+              UI/UX System
+            </span>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="tech-pill text-[10px] py-1 px-2.5">Figma</span>
+                <span class="tech-pill text-[10px] py-1 px-2.5">Design Tokens</span>
+                <span class="tech-pill text-[10px] py-1 px-2.5">Storybook</span>
+              </div>
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-fuchsia-400 transition-colors">
+                Aether Design System
+              </h3>
+              <p class="text-sm text-[var(--text-secondary)] mt-2 line-clamp-2 leading-relaxed">
+                Design system modular com mais de 80 componentes reativos, tokens semânticos e documentação completa para equipes ágeis.
+              </p>
+            </div>
+
+            <div class="flex items-center gap-4 pt-6 mt-6 border-t border-[var(--border-subtle)]">
+              <a href="https://figma.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-white hover:text-fuchsia-400 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+                Demo ao Vivo
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-muted)] hover:text-white transition-colors">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 4: Web -->
+        <article class="project-card glass-card overflow-hidden group flex flex-col transition-all duration-300" data-category="web">
+          <div class="relative aspect-video w-full overflow-hidden bg-[#1E2230] border-b border-[var(--border-subtle)]">
+            <svg class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" viewBox="0 0 400 225" fill="none">
+              <rect width="400" height="225" fill="#0C0F17"/>
+              <rect x="35" y="35" width="330" height="155" rx="10" fill="#161922" stroke="#7C3AED" stroke-opacity="0.3" stroke-width="1.5"/>
+              <circle cx="65" cy="65" r="14" fill="#7C3AED" fill-opacity="0.3"/>
+              <path d="M60 65 L64 69 L72 61" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+              <rect x="95" y="58" width="140" height="14" rx="4" fill="#252A3D"/>
+              <rect x="60" y="100" width="280" height="12" rx="4" fill="#252A3D"/>
+              <rect x="60" y="122" width="220" height="12" rx="4" fill="#1E2333"/>
+              <rect x="60" y="144" width="160" height="12" rx="4" fill="#1E2333"/>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#161922] via-transparent to-transparent opacity-60"></div>
+            <span class="absolute top-3 right-3 text-[11px] font-mono px-2.5 py-1 rounded-md bg-[#0F1117]/80 backdrop-blur border border-white/10 text-violet-300">
+              Web App
+            </span>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="tech-pill text-[10px] py-1 px-2.5">Python</span>
+                <span class="tech-pill text-[10px] py-1 px-2.5">FastAPI</span>
+                <span class="tech-pill text-[10px] py-1 px-2.5">React</span>
+              </div>
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-violet-400 transition-colors">
+                Synapse Knowledge Base
+              </h3>
+              <p class="text-sm text-[var(--text-secondary)] mt-2 line-clamp-2 leading-relaxed">
+                Sistema inteligente de busca semântica em documentações corporativas com processamento de linguagem natural e embeddings vetoriais.
+              </p>
+            </div>
+
+            <div class="flex items-center gap-4 pt-6 mt-6 border-t border-[var(--border-subtle)]">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-white hover:text-violet-400 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+                Demo ao Vivo
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-muted)] hover:text-white transition-colors">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 5: Mobile -->
+        <article class="project-card glass-card overflow-hidden group flex flex-col transition-all duration-300" data-category="mobile">
+          <div class="relative aspect-video w-full overflow-hidden bg-[#1E2230] border-b border-[var(--border-subtle)]">
+            <svg class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" viewBox="0 0 400 225" fill="none">
+              <rect width="400" height="225" fill="#11141D"/>
+              <rect x="135" y="20" width="130" height="185" rx="14" fill="#191C28" stroke="#10B981" stroke-width="1.5"/>
+              <circle cx="200" cy="80" r="32" stroke="#7C3AED" stroke-width="4" stroke-dasharray="140 30"/>
+              <text x="188" y="85" fill="#10B981" font-family="Syne" font-size="14" font-weight="bold">8.4k</text>
+              <rect x="155" y="130" width="90" height="14" rx="4" fill="#252A3D"/>
+              <rect x="155" y="152" width="70" height="10" rx="3" fill="#1E2333"/>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#161922] via-transparent to-transparent opacity-60"></div>
+            <span class="absolute top-3 right-3 text-[11px] font-mono px-2.5 py-1 rounded-md bg-[#0F1117]/80 backdrop-blur border border-white/10 text-emerald-300">
+              Mobile App
+            </span>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="tech-pill text-[10px] py-1 px-2.5">Flutter</span>
+                <span class="tech-pill text-[10px] py-1 px-2.5">Dart</span>
+                <span class="tech-pill text-[10px] py-1 px-2.5">HealthKit</span>
+              </div>
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-emerald-400 transition-colors">
+                Kinetix Habit Tracker
+              </h3>
+              <p class="text-sm text-[var(--text-secondary)] mt-2 line-clamp-2 leading-relaxed">
+                Monitor de rotinas e saúde com feedback hápitico, integração com Apple Health / Google Fit e metas personalizadas.
+              </p>
+            </div>
+
+            <div class="flex items-center gap-4 pt-6 mt-6 border-t border-[var(--border-subtle)]">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-white hover:text-emerald-400 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+                Demo ao Vivo
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-muted)] hover:text-white transition-colors">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 6: UI/UX -->
+        <article class="project-card glass-card overflow-hidden group flex flex-col transition-all duration-300" data-category="uiux">
+          <div class="relative aspect-video w-full overflow-hidden bg-[#1E2230] border-b border-[var(--border-subtle)]">
+            <svg class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" viewBox="0 0 400 225" fill="none">
+              <rect width="400" height="225" fill="#0D0F18"/>
+              <!-- Grid Editorial inspirada no Pangram Pangram -->
+              <rect x="40" y="30" width="150" height="165" rx="4" fill="#181B26" stroke="#2B3042" stroke-width="1"/>
+              <text x="55" y="70" fill="#FFFFFF" font-family="Syne" font-size="28" font-weight="800">Aa</text>
+              <rect x="55" y="90" width="120" height="6" rx="3" fill="#7C3AED"/>
+              <rect x="55" y="105" width="90" height="6" rx="3" fill="#4B5563"/>
+              <!-- Coluna de especificação -->
+              <rect x="210" y="30" width="150" height="75" rx="4" fill="#181B26" stroke="#2B3042" stroke-width="1"/>
+              <text x="225" y="65" fill="#10B981" font-family="Plus Jakarta Sans" font-size="12" font-weight="bold">Editorial Grid 12 col</text>
+              <rect x="210" y="120" width="150" height="75" rx="4" fill="#7C3AED" fill-opacity="0.1" stroke="#7C3AED" stroke-width="1"/>
+              <text x="225" y="155" fill="#A78BFA" font-family="Syne" font-size="12" font-weight="bold">Whitespace: 64px</text>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#161922] via-transparent to-transparent opacity-60"></div>
+            <span class="absolute top-3 right-3 text-[11px] font-mono px-2.5 py-1 rounded-md bg-[#0F1117]/80 backdrop-blur border border-white/10 text-fuchsia-300">
+              UI/UX System
+            </span>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="tech-pill text-[10px] py-1 px-2.5">Editorial</span>
+                <span class="tech-pill text-[10px] py-1 px-2.5">Grid System</span>
+                <span class="tech-pill text-[10px] py-1 px-2.5">Typography</span>
+              </div>
+              <h3 class="font-display font-bold text-xl text-white group-hover:text-fuchsia-400 transition-colors">
+                Studio Monolith Branding
+              </h3>
+              <p class="text-sm text-[var(--text-secondary)] mt-2 line-clamp-2 leading-relaxed">
+                Estudo de identidade e arquitetura de informação tipográfica para estúdio criativo, explorando grids assimétricos e alto contraste.
+              </p>
+            </div>
+
+            <div class="flex items-center gap-4 pt-6 mt-6 border-t border-[var(--border-subtle)]">
+              <a href="https://figma.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-white hover:text-fuchsia-400 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+                Demo ao Vivo
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-muted)] hover:text-white transition-colors">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ETAPA 5: Formulário de Contato
+         ========================================================================== -->
+    <section id="contato" class="py-20 border-t border-[var(--border-subtle)] reveal-on-scroll">
+      
+      <div class="mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Vamos Conversar</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl mt-2 tracking-tight">Entre em Contato</h2>
+        <p class="text-sm sm:text-base text-[var(--text-secondary)] mt-2 max-w-xl">
+          Tem um projeto em mente ou deseja bater um papo sobre tecnologia e design? Envie uma mensagem.
+        </p>
+      </div>
+
+      <!-- Layout de Contato em 2 Partes (Desktop 2 colunas / Mobile 1 coluna) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Lado Esquerdo: Informações Diretas de Contato & Redes -->
+        <div class="lg:col-span-5 space-y-8">
+          
+          <div class="glass-card p-6 space-y-6">
+            <h3 class="font-display font-bold text-xl text-white">Canais Diretos</h3>
+            
+            <!-- Item E-mail -->
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400 shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <span class="block text-xs text-[var(--text-muted)] font-medium">E-mail Comercial</span>
+                <a href="mailto:miguel.martins@exemplo.com" class="text-sm sm:text-base font-semibold text-white hover:text-violet-400 transition-colors">
+                  miguel.martins@exemplo.com
+                </a>
+              </div>
+            </div>
+
+            <!-- Item Localização -->
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <span class="block text-xs text-[var(--text-muted)] font-medium">Localização</span>
+                <span class="text-sm sm:text-base font-semibold text-white">
+                  Brasil (Disponível para atuação Global / Remota)
+                </span>
+              </div>
+            </div>
+
+            <!-- Status de Resposta -->
+            <div class="p-4 rounded-xl bg-violet-600/5 border border-violet-500/15 flex items-center gap-3">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <p class="text-xs text-[var(--text-secondary)]">
+                Tempo médio de resposta: <strong class="text-white">menos de 24 horas</strong>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Redes Sociais com Ícones SVG -->
+          <div class="space-y-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] block">Redes e Conexões</span>
+            <div class="flex items-center gap-3">
+              
+              <!-- LinkedIn -->
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="Perfil LinkedIn de Miguel Oliveira Martins" class="w-12 h-12 rounded-xl glass-card flex items-center justify-center text-[var(--text-secondary)] hover:text-white hover:border-violet-500/50 hover:bg-violet-500/10 transition-all hover:-translate-y-1">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.761-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </a>
+
+              <!-- GitHub -->
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="Perfil GitHub de Miguel Oliveira Martins" class="w-12 h-12 rounded-xl glass-card flex items-center justify-center text-[var(--text-secondary)] hover:text-white hover:border-violet-500/50 hover:bg-violet-500/10 transition-all hover:-translate-y-1">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+              </a>
+
+              <!-- Twitter / X -->
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Perfil X/Twitter de Miguel Oliveira Martins" class="w-12 h-12 rounded-xl glass-card flex items-center justify-center text-[var(--text-secondary)] hover:text-white hover:border-violet-500/50 hover:bg-violet-500/10 transition-all hover:-translate-y-1">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Lado Direito: Formulário com Validação e Feedback Dinâmico -->
+        <div class="lg:col-span-7">
+          <div class="glass-card p-6 sm:p-8 relative overflow-hidden">
+            
+            <form id="contact-form" novalidate class="space-y-5">
+              
+              <!-- Campo: Nome -->
+              <div>
+                <label for="nome" class="block text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)] mb-2">
+                  Seu Nome *
+                </label>
+                <input 
+                  type="text" 
+                  id="nome" 
+                  name="nome" 
+                  placeholder="Ex: João Silva" 
+                  class="w-full bg-[var(--bg-main)] border border-[var(--border-card)] rounded-xl px-4 py-3 text-sm text-white placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
+                  required
+                >
+                <span id="error-nome" class="hidden text-xs text-red-400 mt-1 block"></span>
+              </div>
+
+              <!-- Campo: E-mail -->
+              <div>
+                <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)] mb-2">
+                  Seu E-mail *
+                </label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  placeholder="exemplo@dominio.com" 
+                  class="w-full bg-[var(--bg-main)] border border-[var(--border-card)] rounded-xl px-4 py-3 text-sm text-white placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
+                  required
+                >
+                <span id="error-email" class="hidden text-xs text-red-400 mt-1 block"></span>
+              </div>
+
+              <!-- Campo: Assunto -->
+              <div>
+                <label for="assunto" class="block text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)] mb-2">
+                  Assunto *
+                </label>
+                <input 
+                  type="text" 
+                  id="assunto" 
+                  name="assunto" 
+                  placeholder="Ex: Proposta de Novo Projeto Web" 
+                  class="w-full bg-[var(--bg-main)] border border-[var(--border-card)] rounded-xl px-4 py-3 text-sm text-white placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
+                  required
+                >
+                <span id="error-assunto" class="hidden text-xs text-red-400 mt-1 block"></span>
+              </div>
+
+              <!-- Campo: Mensagem -->
+              <div>
+                <label for="mensagem" class="block text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)] mb-2">
+                  Mensagem *
+                </label>
+                <textarea 
+                  id="mensagem" 
+                  name="mensagem" 
+                  rows="4" 
+                  placeholder="Descreva detalhes sobre sua ideia, prazos ou objetivos..." 
+                  class="w-full bg-[var(--bg-main)] border border-[var(--border-card)] rounded-xl px-4 py-3 text-sm text-white placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all resize-none"
+                  required
+                ></textarea>
+                <span id="error-mensagem" class="hidden text-xs text-red-400 mt-1 block"></span>
+              </div>
+
+              <!-- Botão de Envio -->
+              <button 
+                type="submit" 
+                id="form-submit-btn" 
+                class="btn-primary w-full text-base py-3.5"
+              >
+                <span>Enviar Mensagem</span>
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+              </button>
+
+            </form>
+
+            <!-- Feedback Visual de Sucesso Dinâmico -->
+            <div id="form-success-feedback" class="hidden mt-6 p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 items-center gap-3">
+              <svg class="w-6 h-6 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <div>
+                <p class="font-semibold text-sm text-white">Mensagem enviada com sucesso!</p>
+                <p class="text-xs text-emerald-200 mt-0.5">Obrigado pelo contato, Miguel responderá o mais breve possível.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       ETAPA 5: Rodapé (Footer)
+       ========================================================================== -->
+  <footer class="border-t border-[var(--border-subtle)] bg-[var(--bg-surface)]/40 backdrop-blur-md">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+      
+      <!-- Copyright -->
+      <div class="flex flex-col sm:flex-row items-center gap-2 text-xs text-[var(--text-muted)] text-center sm:text-left">
+        <span>© 2026 - Desenvolvido com Antigravity</span>
+        <span class="hidden sm:inline">•</span>
+        <span class="text-[var(--text-secondary)] font-medium">Miguel Oliveira Martins</span>
+      </div>
+
+      <!-- Link Voltar ao Topo -->
+      <button 
+        id="footer-back-to-top" 
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+        class="inline-flex items-center gap-2 text-xs font-semibold text-[var(--text-secondary)] hover:text-white transition-colors cursor-pointer group"
+      >
+        <span>Voltar ao topo</span>
+        <div class="w-7 h-7 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-card)] flex items-center justify-center group-hover:border-violet-500 group-hover:text-violet-400 transition-all">
+          <svg class="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+          </svg>
+        </div>
+      </button>
+
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button 
+    id="back-to-top" 
+    aria-label="Voltar ao início da página" 
+    class="fixed bottom-6 right-6 z-40 p-3 rounded-xl glass-card text-[var(--text-secondary)] hover:text-white hover:border-violet-500 hover:shadow-lg hover:shadow-violet-500/25 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 cursor-pointer"
+  >
+    <svg class="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <!-- Script Principal -->
+  <script src="script.js"></script>
+</body>
+</html>
